@@ -1,20 +1,26 @@
 #ifndef POOL_GAMECONTROLLER_H
 #define POOL_GAMECONTROLLER_H
 #include <iostream>
-#include "GameObject.h"
-
+#include "Ball.h"
+#include "Wall.h"
+#include "Hole.h"
+#include <SFML/Graphics.hpp>
 class GameController
 {
-private:
-    static size_t m_access_points_created;
-    static GameObject *m_gameObjects;
-    static size_t gameObjectsCount;
-    static sf::RenderWindow *window;
 public:
+    static size_t points_created;
+    static Ball *balls;
+    static size_t balls_count;
+    static Wall *walls;
+    static size_t walls_count;
+    static Hole *holes;
+    static size_t holes_count;
+    static sf::RenderWindow *window;
+
+    GameController(sf::RenderWindow *_window);
     GameController();
 
     static void update();
-    static void draw();
 };
 
 

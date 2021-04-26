@@ -1,28 +1,28 @@
 #ifndef POOL_BALL_H
 #define POOL_BALL_H
-#include "GameObject.h"
-
-class Ball : public GameObject
+#include <SFML/Graphics.hpp>
+class Ball
 {
 private:
     // PHYSIC CONSTANTS
-    const float m_mass = 1;
-    const float m_friction_value = 0.2;
-    const float m_deceleration = m_mass * m_friction_value;
-    const float m_elasticValue = 0.6;
+    const float deceleration = 0.99;
+    const float elasticValue = 0.7;
+    float radius;
     ///////////////////
-    // BALL PROPERTIES
-    float m_radius;
-    bool isMoving;
-    ///////////////////
-    sf::Vector2f m_speed;
+
 
 public:
-    void addForce(sf::Vector2f force);
-    void update() override;
-    void move(sf::Vector2f distance);
-    void hitCheck();
-
+    void add_force(sf::Vector2f force);
+    void update();
+    void hit_check();
+    Ball(sf::Vector2f _position, float _radius);
+    Ball();
+    sf::CircleShape drawable;
+    sf::Vector2f speed;
+///////////////////
+// BALL PROPERTIES
+sf::Vector2f position;
+    bool is_moving;
 };
 
 

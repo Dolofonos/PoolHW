@@ -3,4 +3,8 @@ project(Pool)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Pool main.cpp GameController.cpp GameController.h GameObject.cpp GameObject.h Ball.cpp Ball.h)
+find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
+
+add_executable(Pool main.cpp GameController.cpp GameController.h Ball.cpp Ball.h Wall.cpp Wall.h Hole.cpp Hole.h)
+
+target_link_libraries(Pool sfml-graphics sfml-audio)
