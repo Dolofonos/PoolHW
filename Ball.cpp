@@ -1,5 +1,6 @@
 #include "Ball.h"
 #include "GameController.h"
+#include "Hole.h"
 #include <cmath>
 
 void Ball::add_force(sf::Vector2f force)
@@ -32,7 +33,9 @@ void Ball::hit_check()
     GameController controller;
     Wall *walls = controller.walls;
     Ball *balls = controller.balls;
-    //столкновение с шарами
+    Hole *holes = controller.holes;
+
+    // Столкновения
     for (int i = 0; i < controller.balls_count; ++i)
     {
         for (int j = 0; j < controller.walls_count; ++j)
@@ -98,6 +101,16 @@ void Ball::hit_check()
                         }
             }
         }
+
+        for (int j = 0; j < controller.holes_count; ++j) {
+            if (abs(balls[i].position.x - holes[j].position.x) + abs(balls[i].position.y - holes[j].position.y) < holes[j].holeRadius * 1.8){
+                sf::Vector2f postionOffset = {0,0};
+                postionOffset.x = 532 + (i * 100);
+                postionOffset.y = 200;
+                balls[i].position = postionOffset;
+                balls[i].speed = {0, 0};
+            }
+        }
     }
 }
 
@@ -108,6 +121,7 @@ Ball::Ball(sf::Vector2f _position, float _radius)
     drawable.setRadius(radius);
     drawable.setOrigin(radius,radius);
     drawable.setPosition(position);
+    drawable.setFillColor(sf::Color::Yellow);
 
 
 

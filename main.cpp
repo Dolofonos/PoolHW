@@ -13,13 +13,21 @@ int main()
     sf::RenderWindow window(sf::VideoMode(1920, 1080), "SFML works!",sf::Style::Default, settings);
     window.setFramerateLimit(60);
 
+    RectangleShape board(Vector2f(896, 512));
+    board.setFillColor(Color::Green);
+    board.setPosition(Vector2f(512, 256));
+
+    RectangleShape acrossBoard(Vector2f(1000, 610));
+    acrossBoard.setFillColor(Color(150, 75, 0));
+    acrossBoard.setPosition(Vector2f(470, 220));
+
     // Инициализация контроллера игры
     GameController gameController(&window);
     Ball *balls = gameController.balls;
 
-
+    // Создание спрайта кия
     Image cueImage;
-    cueImage.loadFromFile("/home/kefrnik/cue.png");
+    cueImage.loadFromFile("C:\\Clion Projects\\SFML_Homework\\images\\cue.png");
     Texture cueTexture;
     cueTexture.loadFromImage(cueImage);
     Sprite cueSprite;
@@ -27,30 +35,8 @@ int main()
     cueSprite.setScale(0.35, 0.35);
     cueSprite.setOrigin(-20, cueSprite.getTextureRect().height / 2);
 
-
-
-
-//    CircleShape holes[6];
-//    for (int i = 0; i < 6; i++) {
-//        float positionX, positionY;
-//        if (i < 3){
-//            positionX = 482 * (i + 1);
-//            positionY = 226;
-//        } else {
-//            positionX = 482 * (i - 2);
-//            positionY = 766;
-//        }
-//        holes[i].setRadius(30);
-//        holes[i].setPosition(positionX, positionY);
-//        holes[i].setFillColor(Color::Black);
-//    }
-
-
     float speed = 0.001;
     bool isTurn = false;
-
-//    Ball *Balls = gameController.balls;
-//    balls[0].add_force(sf::Vector2f( 5,9));
 
     while (window.isOpen())
     {
@@ -59,9 +45,11 @@ int main()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+            if (event.key.code == sf::Keyboard::Escape)
+                window.close();
         }
 
-        window.clear(sf::Color(80, 140, 80));
+        window.clear(Color(0,128,1));
 
         float vecX, vecY, rotation;
 
@@ -93,19 +81,15 @@ int main()
                 {
                     balls[i].add_force(Vector2f((balls[i].position.x - mousePos.x) , (balls[i].position.y - mousePos.y )));
                     cueSprite.setPosition(-1000, -1000);
-//                    Balls[i]->startCoordinates = Balls[i]->getPosition();
-//                    Balls[i]->endCoordinates = Balls[i]->getEndBallCoordinates({mousePos.x, mousePos.y}, force);
                 }
 
 
             }
         };
 
-
-
-
+        window.draw(acrossBoard);
+        window.draw(board);
         gameController.update();
-//        GameController::draw();
         window.draw(cueSprite);
         window.display();
     }

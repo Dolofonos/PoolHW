@@ -9,6 +9,9 @@ class Hole
 public:
     sf::CircleShape drawable;
     sf::Vector2f position;
+    float holeRadius;
+    Hole(sf::Vector2f _position, float _radius);
+    Hole();
     void update();
 };
 

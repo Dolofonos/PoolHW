@@ -1,10 +1,15 @@
 cmake_minimum_required(VERSION 3.19)
-project(Pool)
+project(PoolHW)
 
 set(CMAKE_CXX_STANDARD 20)
 
-find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
+add_executable(PoolHW main.cpp GameController.h GameController.cpp Hole.cpp Hole.h Wall.cpp Wall.h Ball.h Ball.cpp)
 
-add_executable(Pool main.cpp GameController.cpp GameController.h Ball.cpp Ball.h Wall.cpp Wall.h Hole.cpp Hole.h)
+set(SFML_ROOT C:/SFML-2.5.1/lib/cmake/SFML)
+set(SFML_STATIC_LIBRARIES TRUE)
 
-target_link_libraries(Pool sfml-graphics sfml-audio)
+find_package(SFML 2 REQUIRED COMPONENTS audio graphics window system)
+if (SFML_FOUND)
+    include_directories(${SFML_INCLUDE_DIR})
+    target_link_libraries(PoolHW sfml-graphics sfml-system)
+endif ()
