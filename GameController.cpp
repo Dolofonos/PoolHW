@@ -24,6 +24,16 @@ void GameController::update()
     {
         balls[i].update();
         window->draw(balls[i].drawable);
+        sf::Text ballNumber;
+        sf::Font font;
+        font.loadFromFile("C:\\Windows\\Fonts\\Arial.ttf");
+        ballNumber.setFont(font);
+        ballNumber.setCharacterSize(20);
+        char inNumber = (i + 1) + '0';
+        ballNumber.setString(inNumber);
+        ballNumber.setFillColor(sf::Color::Black);
+        ballNumber.setPosition(balls[i].position.x - 6, balls[i].position.y - 12);
+        window->draw(ballNumber);
     }
     balls[0].hit_check();
 }

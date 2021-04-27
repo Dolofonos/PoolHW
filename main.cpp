@@ -66,7 +66,7 @@ int main()
         for (int i = 0; i < gameController.balls_count; ++i)
         {
 
-            if (balls[i].drawable.getGlobalBounds().contains(mousePos))
+            if (balls[i].drawable.getGlobalBounds().contains(mousePos) && !balls[i].is_goal)
             {
                 if (Mouse::isButtonPressed(Mouse::Left) && !isTurn)
                 {
@@ -82,8 +82,6 @@ int main()
                     balls[i].add_force(Vector2f((balls[i].position.x - mousePos.x) , (balls[i].position.y - mousePos.y )));
                     cueSprite.setPosition(-1000, -1000);
                 }
-
-
             }
         };
 
@@ -95,3 +93,5 @@ int main()
     }
         return 0;
 }
+
+

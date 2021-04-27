@@ -21,8 +21,10 @@ public:
     sf::Vector2f speed;
 ///////////////////
 // BALL PROPERTIES
-sf::Vector2f position;
+    int printScoreNumber;
+    sf::Vector2f position;
     bool is_moving;
+    bool is_goal;
 };
 
 

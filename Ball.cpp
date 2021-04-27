@@ -35,6 +35,24 @@ void Ball::hit_check()
     Ball *balls = controller.balls;
     Hole *holes = controller.holes;
 
+    sf::Text scoreText;
+    sf::Text scoreNumber;
+    sf::Font font;
+    font.loadFromFile("C:\\Windows\\Fonts\\Arial.ttf");
+    scoreText.setFont(font);
+    scoreNumber.setFont(font);
+    scoreText.setCharacterSize(20);
+    scoreNumber.setCharacterSize(20);
+    scoreText.setString("Score: ");
+    char inNum = printScoreNumber + '0';
+    scoreNumber.setString(inNum);
+    scoreText.setFillColor(sf::Color::Black);
+    scoreNumber.setFillColor(sf::Color::Black);
+    scoreText.setPosition(1000, 10);
+    scoreNumber.setPosition(1060, 10);
+    GameController::window->draw(scoreText);
+    GameController::window->draw(scoreNumber);
+
     // Столкновения
     for (int i = 0; i < controller.balls_count; ++i)
     {
@@ -109,6 +127,8 @@ void Ball::hit_check()
                 postionOffset.y = 200;
                 balls[i].position = postionOffset;
                 balls[i].speed = {0, 0};
+                printScoreNumber++;
+                balls[i].is_goal = true;
             }
         }
     }
@@ -122,8 +142,6 @@ Ball::Ball(sf::Vector2f _position, float _radius)
     drawable.setOrigin(radius,radius);
     drawable.setPosition(position);
     drawable.setFillColor(sf::Color::Yellow);
-
-
 
     is_moving = false;
 }
