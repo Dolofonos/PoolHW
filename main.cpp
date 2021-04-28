@@ -34,6 +34,7 @@ int main()
     cueSprite.setTexture(cueTexture);
     cueSprite.setScale(0.35, 0.35);
     cueSprite.setOrigin(-20, cueSprite.getTextureRect().height / 2);
+    cueSprite.setPosition(-1000,-1000);
 
     float speed = 0.001;
     bool isTurn = false;

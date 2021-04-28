@@ -48,8 +48,8 @@ void Ball::hit_check()
     scoreNumber.setString(inNum);
     scoreText.setFillColor(sf::Color::Black);
     scoreNumber.setFillColor(sf::Color::Black);
-    scoreText.setPosition(1000, 10);
-    scoreNumber.setPosition(1060, 10);
+    scoreText.setPosition(1000, 100);
+    scoreNumber.setPosition(1060, 100);
     GameController::window->draw(scoreText);
     GameController::window->draw(scoreNumber);
 
