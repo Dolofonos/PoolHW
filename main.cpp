@@ -44,10 +44,16 @@ int main()
         sf::Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed) {
                 window.close();
-            if (event.key.code == sf::Keyboard::Escape)
+            }
+            if (event.key.code == sf::Keyboard::Escape) {
                 window.close();
+            }
+            if (event.type == sf::Event::Resized){
+                sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
+                window.setView(sf::View(visibleArea));  
+            }
         }
 
         window.clear(Color(0,128,1));
