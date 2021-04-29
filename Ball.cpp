@@ -19,7 +19,7 @@ void Ball::update()
     sf::Vector2f __speed = sf::Vector2f(speed.x * deceleration, speed.y * deceleration);
     speed = __speed;
     float abs_speed = sqrt(speed.x * speed.x + speed.y * speed.y);
-    if (abs_speed < 0.1)
+    if (abs_speed < 0.2)
     {
         speed.y = 0; speed.x = 0;
         is_moving = false;

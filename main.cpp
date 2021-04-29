@@ -52,7 +52,7 @@ int main()
             }
             if (event.type == sf::Event::Resized){
                 sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
-                window.setView(sf::View(visibleArea));  
+                window.setView(sf::View(visibleArea));
             }
         }
 
@@ -70,9 +70,9 @@ int main()
             isTurn += balls[i].is_moving;
         }
 
+
         for (int i = 0; i < gameController.balls_count; ++i)
         {
-
             if (balls[i].drawable.getGlobalBounds().contains(mousePos) && !balls[i].is_goal)
             {
                 if (Mouse::isButtonPressed(Mouse::Left) && !isTurn)
@@ -82,7 +82,6 @@ int main()
                     rotation = (atan2(vecX, vecY) * 180 / M_PI);
                     cueSprite.setPosition(balls[i].position.x, balls[i].position.y);
                     cueSprite.setRotation(90 - rotation);
-
                 }
                 if (event.type == sf::Event::MouseButtonReleased && !isTurn)
                 {
@@ -101,4 +100,5 @@ int main()
         return 0;
 }
 
-
+// TODO: Закинуть классы в папки, добавить шаров до нормального количества и сделать кликабельным только 1 шар
+// TODO: Сделать функцию, чтобы при нажатии на 'R' игра перезапускалась
